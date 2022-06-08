@@ -7,6 +7,7 @@ def local_css(file_name):
     with open(file_name, "r") as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+# Streamlit CSS Hack - Executing this will set the css properties for the rest of the app
 local_css("streamlit.css")
 
 st.header("Newsletter Dashboard")
@@ -17,8 +18,13 @@ def get_random_data():
 
 @st.cache()
 def read_dataframe(path, sep=","):
-    df = pd.read_csv(path, sep=sep)
+    df = pd.read_csv(path, sep=sep).sort_values("date", ascending=False)
     return df
+
+@st.cache()
+def get_filtered_dataframe(df, topics, newsletters) -> pd.DataFrame:
+    # TODO add topic selection when it is added to the data
+    return df.loc[(df["from"].isin(newsletters))]
 
 @st.cache()
 def replace_html_template(title, body):
@@ -39,8 +45,6 @@ df = read_dataframe("real_mails_20_05_22.csv")
 with col1:
     # Filtering options
     with st.container():
-        # st.write("Filtering options")
-       
         # TODO add callback function
         topic_options = st.multiselect(
             'Topic selection',
@@ -48,26 +52,23 @@ with col1:
             [],
             key = "selected_topics")
 
-        #update_session_state("selected_topics", topic_options)
-
         # TODO add callback function
         newsletter_options = st.multiselect(
             'Newsletter selection',
-            ['info@odsc.com', 'Deeplearning Weekly', 'NBC26'],
+            df["from"].unique().tolist(),
             [],
             key = "selected_newsletters")
 
-        #update_session_state("selected_newsletters", newsletter_options)
-        print(newsletter_options)
-        print(st.session_state)
-
-    # Newsletter Browser
+    # Newsletter Story Browser
     with st.container():
-        # st.write("Newsletter Story Browser")
-        # st.dataframe(read_dataframe("real_mails_20_05_22.csv"))
-        for i in range(10):
-            sample = df.sample(1)
-            st.markdown(replace_html_template(sample["subject"].item(), sample["text"].item()), unsafe_allow_html=True)
+        selected_topics = get_session_state_value("selected_topics")
+        selected_newsletters = get_session_state_value("selected_newsletters")
+
+        dataframe_to_display = get_filtered_dataframe(df, selected_topics, selected_newsletters)
+        print(dataframe_to_display.shape)
+        for i, row in dataframe_to_display.iterrows():
+            
+            st.markdown(replace_html_template(row["subject"], row["text"]), unsafe_allow_html=True)
 
 
 # Right-hand side consists of the pick of the day and the full HTML view of the selected newsletter
@@ -76,12 +77,9 @@ with col2:
     # Pick of the day
     with st.container():
         st.write(st.session_state)
-        # st.write("Pick of the day")
+ 
         st.markdown("**This is a headline.**")
         st.markdown("And this is the corresponding Article to it. Lorem Ipsum")
 
     with st.container():
-        # st.info("Test")
-        st.components.v1.html(sample["content"].item(), width=None, height=512, scrolling=True)
-
-        
+        st.components.v1.html(sample["content"].item(), width=None, height=1024, scrolling=True)
