@@ -1,0 +1,1751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Data Science Weekly - Issue 433</title>
+
+    <style type="text/css">
+      #outlook a {
+        padding: 0;
+      }
+      .ReadMsgBody {
+        width: 100%;
+      }
+      .ExternalClass {
+        width: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+      table,
+      td {
+        border-collapse: collapse !important;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      #bodyTable,
+      #bodyCell {
+        height: 100% !important;
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+      }
+      #bodyCell {
+        padding: 20px;
+      }
+      #templateContainer {
+        width: 600px;
+      }
+      body,
+      #bodyTable {
+        background-color: #;
+      }
+      h1 {
+        color: #34495e !important;
+        display: block;
+        font-family: Georgia;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 100%;
+        letter-spacing: normal;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        margin-left: 0;
+        text-align: center;
+      }
+      h2 {
+        color: #34495e !important;
+        display: block;
+        font-family: Tahoma;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 100%;
+        letter-spacing: normal;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        margin-left: 0;
+        text-align: center;
+      }
+      h3 {
+        color: #000000 !important;
+        display: block;
+        font-family: Helvetica;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 100%;
+        letter-spacing: normal;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        margin-left: 0;
+        text-align: center;
+      }
+      h4 {
+        color: #000000 !important;
+        display: block;
+        font-family: Helvetica;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 100%;
+        letter-spacing: normal;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+        margin-left: 0;
+        text-align: left;
+      }
+      #templatePreheader {
+        border-top: 0;
+        border-bottom: 0;
+      }
+      .preheaderContent {
+        color: #34495e;
+        font-family: Tahoma;
+        font-size: 9px;
+        line-height: 125%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: left;
+      }
+      .preheaderContent a:link,
+      .preheaderContent a:visited,
+      .preheaderContent a .yshortcuts {
+        color: #34495e;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      #templateHeader {
+        border-top: 10px solid #000000;
+        border-bottom: 5px solid #000000;
+      }
+      .headerContent {
+        color: #000000;
+        font-family: Helvetica;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+      }
+      .headerContent a:link,
+      .headerContent a:visited,
+      .headerContent a .yshortcuts {
+        color: #000000;
+        font-weight: normal;
+        text-decoration: underline;
+      }
+      #headerImage {
+        height: auto;
+        max-width: 600px !important;
+      }
+      #templateBody {
+        border-top: 0;
+        border-bottom: 0;
+      }
+      .bodyContent {
+        color: #000000;
+        font-family: Helvetica;
+        font-size: 16px;
+        line-height: 150%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        text-align: left;
+      }
+      .bodyContent a:link,
+      .bodyContent a:visited,
+      .bodyContent a .yshortcuts {
+        color: #ff0000;
+        font-weight: normal;
+        text-decoration: none;
+      }
+      .bodyContent img {
+        display: inline;
+        height: auto;
+        max-width: 600px !important;
+      }
+      #templateFooter {
+        border-top: 2px solid #000000;
+        border-bottom: 20px solid #000000;
+      }
+      .footerContent {
+        color: #000000;
+        font-family: Helvetica;
+        font-size: 10px;
+        line-height: 150%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+      }
+      .footerContent a:link,
+      .footerContent a:visited,
+      .footerContent a .yshortcuts,
+      .footerContent a span {
+        color: #000000;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .footerContent img {
+        display: inline;
+        height: auto;
+        max-width: 600 !important;
+      }
+      @media only screen and (max-width: 500px) {
+        body,
+        table,
+        td,
+        p,
+        a,
+        li,
+        blockquote {
+          -webkit-text-size-adjust: none !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        body {
+          width: auto !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        td[id="bodyCell"] {
+          padding: 10px;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        table[id="templateContainer"] {
+          max-width: 600px !important;
+          width: 75% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        h1 {
+          font-size: 40px !important;
+          line-height: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        h2 {
+          font-size: 20px !important;
+          line-height: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        h3 {
+          font-size: 18px !important;
+          line-height: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        h4 {
+          font-size: 16px !important;
+          line-height: 100% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        table[id="templatePreheader"] {
+          display: none !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        td[class="headerContent"] {
+          font-size: 20px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        td[class="bodyContent"] {
+          font-size: 18px !important;
+          line-height: 125% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        td[class="footerContent"] {
+          font-size: 14px !important;
+          line-height: 150% !important;
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        td[class="footerContent"] a {
+          display: block !important;
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #">
+    <center>
+      <table
+        align="center"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        height="100%"
+        width="100%"
+        id="bodyTable"
+        style="
+          mso-table-lspace: 0pt;
+          mso-table-rspace: 0pt;
+          margin: 0;
+          padding: 0;
+          background-color: #;
+          border-collapse: collapse !important;
+          height: 100% !important;
+          width: 100% !important;
+        "
+      >
+        <tr>
+          <td
+            align="center"
+            height="100%"
+            valign="top"
+            width="100%"
+            id="bodyCell"
+            style="
+              mso-table-lspace: 0pt;
+              mso-table-rspace: 0pt;
+              margin: 0;
+              padding: 20px;
+              border-collapse: collapse !important;
+              height: 100% !important;
+              width: 100% !important;
+            "
+          >
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              id="templateContainer"
+              style="
+                mso-table-lspace: 0pt;
+                mso-table-rspace: 0pt;
+                width: 600px;
+                border-collapse: collapse !important;
+              "
+            >
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    mso-table-lspace: 0pt;
+                    mso-table-rspace: 0pt;
+                    border-collapse: collapse !important;
+                  "
+                >
+                  <!-- BEGIN PREHEADER -->
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    id="templatePreheader"
+                    style="
+                      mso-table-lspace: 0pt;
+                      mso-table-rspace: 0pt;
+                      border-top: 0;
+                      border-bottom: 0;
+                      border-collapse: collapse !important;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="preheaderContent"
+                        style="
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #34495e;
+                          font-family: Tahoma;
+                          font-size: 9px;
+                          line-height: 125%;
+                          padding-top: 10px;
+                          padding-bottom: 10px;
+                          text-align: left;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <span
+                          style="
+                            font-family: tahoma, verdana, segoe, sans-serif;
+                          "
+                          ><span style="font-size: 11px"
+                            ><font color="#34495e"
+                              >Curated news, articles and jobs related to Data
+                              Science.&nbsp;<br />
+                              <strong
+                                >Keep up with all the latest
+                                developments</strong
+                              ></font
+                            ></span
+                          ></span
+                        >
+                      </td>
+                      <!--
+ -->
+                      <td
+                        width="220"
+                        class="preheaderContent"
+                        style="
+                          padding-left: 20px;
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #34495e;
+                          font-family: Tahoma;
+                          font-size: 9px;
+                          line-height: 125%;
+                          padding-top: 10px;
+                          padding-bottom: 10px;
+                          text-align: left;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <span style="font-size: 11px"
+                          ><span
+                            style="
+                              font-family: tahoma, verdana, segoe, sans-serif;
+                            "
+                            >Email not displaying correctly?<br />
+                            <a
+                              href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=c223d0dfb2&e=7dcf46431f"
+                              target="_blank"
+                              style="
+                                color: #34495e;
+                                font-weight: bold;
+                                text-decoration: none;
+                              "
+                              >View it in your browser</a
+                            >.</span
+                          ></span
+                        >
+                      </td>
+                      <!--
+ -->
+                    </tr>
+                  </table>
+                  <!-- END PREHEADER -->
+                </td>
+              </tr>
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    mso-table-lspace: 0pt;
+                    mso-table-rspace: 0pt;
+                    border-collapse: collapse !important;
+                  "
+                >
+                  <!-- BEGIN HEADER -->
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    id="templateHeader"
+                    style="
+                      mso-table-lspace: 0pt;
+                      mso-table-rspace: 0pt;
+                      border-top: 10px solid #000000;
+                      border-bottom: 5px solid #000000;
+                      border-collapse: collapse !important;
+                    "
+                  >
+                    <tr>
+                      <td
+                        valign="top"
+                        class="headerContent"
+                        style="
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 20px;
+                          font-weight: bold;
+                          line-height: 100%;
+                          padding-top: 20px;
+                          padding-bottom: 20px;
+                          text-align: center;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <h1
+                          style="
+                            display: block;
+                            font-family: Georgia;
+                            font-size: 26px;
+                            font-style: normal;
+                            font-weight: bold;
+                            line-height: 100%;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <img
+                            align="none"
+                            height="253"
+                            src="https://gallery.mailchimp.com/71a2b2a38789d4d25b738462f/images/twitter_DataScienceWeekly.png"
+                            width="319"
+                            style="
+                              border: 0;
+                              height: auto;
+                              line-height: 100%;
+                              outline: none;
+                              text-decoration: none;
+                            "
+                          />
+                        </h1>
+
+                        <h2
+                          style="
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            line-height: 100%;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          Issue #433<br />
+                          <br />
+                          March 10 2022
+                        </h2>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- END HEADER -->
+                </td>
+              </tr>
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    mso-table-lspace: 0pt;
+                    mso-table-rspace: 0pt;
+                    border-collapse: collapse !important;
+                  "
+                >
+                  <!-- BEGIN BODY -->
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    id="templateBody"
+                    style="
+                      mso-table-lspace: 0pt;
+                      mso-table-rspace: 0pt;
+                      border-top: 0;
+                      border-bottom: 0;
+                      border-collapse: collapse !important;
+                    "
+                  >
+                    <tr>
+                      <td
+                        valign="top"
+                        class="bodyContent"
+                        style="
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          line-height: 150%;
+                          padding-top: 40px;
+                          padding-bottom: 40px;
+                          text-align: left;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Editor Picks</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=0f927e86e7&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Deep Learning Is Hitting a Wall</a
+                              ><br />
+                              What would it take for artificial intelligence to
+                              make real progress?....</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=2344eb4d95&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >MLOps Is a Mess But That&#39;s to be
+                                Expected</a
+                              ><br />
+                              Today machine learning continues to be one of the
+                              most talked about and touted technology waves,
+                              promising to revolutionize every corner of
+                              society...And yet the ecosystem is in a frenzied
+                              state...New fundamental science advances come out
+                              of every week. Startups and enterprises spray new
+                              developer tools into the market trying to capture
+                              a chunk of what many speculate to be a market
+                              worth between $40-120 billion by 2025...And yet if
+                              you&rsquo;re just entering the discourse, how do
+                              you make sense of it all?...In this post, I want
+                              to focus the discussion about the state of machine
+                              learning operations (MLOps) today, where we are,
+                              where we are going...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=8ad47e4e2b&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Anatomy of an AI System</a
+                              ><br />
+                              The Amazon Echo as an anatomical map of human
+                              labor, data and planetary resources...This is an
+                              interaction with Amazon&rsquo;s Echo device. 3 A
+                              brief command and a response is the most common
+                              form of engagement with this consumer
+                              voice-enabled AI device...How can we begin to see
+                              it, to grasp its immensity and complexity as a
+                              connected form? We start with an outline: an
+                              exploded view of a planetary system across three
+                              stages of birth, life and death, accompanied by an
+                              essay in 21 parts. Together, this becomes an
+                              anatomical map of a single AI system...</font
+                            >
+                          </li>
+                        </ul>
+                        &nbsp;
+
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >A Message from this week&#39;s Sponsor:</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <h4
+                          style="
+                            line-height: 16px;
+                            text-align: center;
+                            display: block;
+                            font-family: Helvetica;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            color: #000000 !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            ><a
+                              href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=953e39d67d&e=7dcf46431f"
+                              style="
+                                color: #ff0000;
+                                font-weight: normal;
+                                text-decoration: none;
+                              "
+                              ><img
+                                data-file-id="1222080"
+                                height="182"
+                                src="https://mcusercontent.com/71a2b2a38789d4d25b738462f/images/bba71e4b-585b-7269-da31-82038af87b16.jpg"
+                                style="
+                                  border: 0px;
+                                  width: 350px;
+                                  height: 182px;
+                                  margin: 0px;
+                                  line-height: 100%;
+                                  outline: none;
+                                  text-decoration: none;
+                                  display: inline;
+                                  max-width: 600px !important;
+                                "
+                                width="350" /></a
+                          ></font>
+                        </h4>
+                        <br />
+                        <br />
+                        <font face="tahoma, verdana, segoe, sans-serif"
+                          ><a
+                            href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=236a267b13&e=7dcf46431f"
+                            style="
+                              color: #ff0000;
+                              font-weight: normal;
+                              text-decoration: none;
+                            "
+                            >Live Webinar | How to Create &amp; Foster a
+                            Data-Driven Culture</a
+                          ><br />
+                          <br />
+                          Wednesday, Mar 23 at 2PM ET (11AM PT)<br />
+                          <br />
+                          Join Data &amp; Analytics Leaders from PayPal, Direct
+                          Supply, BetMGM, and Kolibri Games &amp; learn about
+                          their initiatives in Business Intelligence, Advanced
+                          Analytics, and Data Science to make faster, smarter
+                          data-driven decisions at scale.<br />
+                          <br />
+                          &nbsp;
+                        </font>
+
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Data Science Articles &amp; Videos
+                          </font>
+                        </h2>
+                        &nbsp;
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=98cf7c53e5&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >&micro;Transfer: A technique for hyperparameter
+                                tuning of enormous neural networks</a
+                              ><br />
+                              In this post, we relay how our fundamental
+                              research enabled us, for the first time, to tune
+                              enormous neural networks that are too expensive to
+                              train more than once. We achieved this by showing
+                              that a particular parameterization preserves
+                              optimal hyperparameters across different model
+                              sizes...By greatly reducing the need to guess
+                              which training hyperparameters to use, this
+                              technique can accelerate research on enormous
+                              neural networks, such as GPT-3 and potentially
+                              larger successors in the future...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=f9160d31e0&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Restoring and attributing ancient texts using
+                                deep neural networks</a
+                              ><br />
+                              Ancient history relies on disciplines such as
+                              epigraphy&mdash;the study of inscribed texts known
+                              as inscriptions&mdash;for evidence of the thought,
+                              language, society and history of past
+                              civilizations1. However, over the centuries, many
+                              inscriptions have been damaged to the point of
+                              illegibility, transported far from their original
+                              location and their date of writing is steeped in
+                              uncertainty. Here we present Ithaca, a deep neural
+                              network for the textual restoration, geographical
+                              attribution and chronological attribution of
+                              ancient Greek inscriptions. Ithaca is designed to
+                              assist and expand the historian&rsquo;s
+                              workflow...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=df2a6a1b43&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >The 2030 Self-Driving Car Bet</a
+                              ><br />
+                              It&#39;s my honor to announce that John Carmack
+                              and I (Jeff Atwood) have initiated a friendly bet
+                              of $10,000* to the 501(c)(3) charity of the
+                              winner&rsquo;s choice: By January 1st, 2030,
+                              completely autonomous self-driving cars meeting
+                              SAE J3016 level 5 will be commercially available
+                              for passenger use in major cities...I am betting
+                              <em>against</em>, and John is betting
+                              <em>for</em>...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=0d6d9cc571&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Data Visualization Standards</a
+                              ><br />
+                              The Data Visualization Standards (DVS) are a
+                              collection of guidance and resources to help
+                              create better data visualizations with less effort
+                              from the US Census Bureau. These standards contain
+                              both requirements and recommendations for both
+                              novices and experts to follow when creating new
+                              data visualizations...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=8ebcd62d48&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >NN Template - Generic template to bootstrap
+                                your PyTorch project </a
+                              ><br />
+                              Generic cookiecutter template to bootstrap PyTorch
+                              projects and to avoid writing boilerplate code to
+                              integrate: a) PyTorch Lightning, lightweight
+                              PyTorch wrapper for high-performance AI research,
+                              b) Hydra, a framework for elegantly configuring
+                              complex applications, c) Weights and Biases,
+                              organize and analyze machine learning experiments.
+                              (educational account available, d) Streamlit,
+                              turns data scripts into shareable web apps in
+                              minutes, e) MkDocs and Material for MkDocs, a
+                              fast, simple and downright gorgeous static site
+                              generator, f) DVC, track large files, directories,
+                              or ML models. Think &quot;Git for data&quot;, g)
+                              GitHub Actions, to run the tests, publish the
+                              documentation and to PyPI automatically, and h)
+                              Python best practices for developing and
+                              publishing research projects...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=778006f851&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >A visual introduction to machine learning</a
+                              ><br />
+                              n machine learning, computers apply statistical
+                              learning techniques to automatically identify
+                              patterns in data. These techniques can be used to
+                              make highly accurate predictions...Keep scrolling.
+                              Using a data set about homes, we will create a
+                              machine learning model to distinguish homes in New
+                              York from homes in San Francisco...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=0675944c98&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >A Concrete Introduction to Probability (using
+                                Python)</a
+                              ><br />
+                              This notebook will explore these concepts in a
+                              concrete way using Python code. The code is meant
+                              to be succint and explicit, and fast enough to
+                              handle sample spaces with millions of outcomes. If
+                              you need to handle trillions, you&#39;ll want a
+                              more efficient implementation. I also have another
+                              notebook that covers paradoxes in Probability
+                              Theory...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=badd61475d&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >CS 329S: Machine Learning Systems Design
+                                [Stanford, Winter 2022]</a
+                              ><br />
+                              This course aims to provide an iterative framework
+                              for developing real-world machine learning systems
+                              that are deployable, reliable, and scalable...It
+                              starts by considering all stakeholders of each
+                              machine learning project and their objectives.
+                              Different objectives require different design
+                              choices, and this course will discuss the
+                              tradeoffs of those choices...Students will learn
+                              about data management, data engineering, feature
+                              engineering, approaches to model selection,
+                              training, scaling, how to continually monitor and
+                              deploy changes to ML systems, as well as the human
+                              side of ML projects such as team structure and
+                              business metrics...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=19c67099a6&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Explainable Machine Learning in NLP: Methods
+                                and Evaluation [PDF]</a
+                              ><br />
+                              This talk is based on four recent papers: a) The
+                              Out-of-Distribution Problem in Explainability and
+                              Search Methods for Feature Importance Explanations
+                              (2021), b) FastIF: Scalable Influence Functions
+                              for Efficient Model Interpretation and Debugging
+                              (2021), c) Leakage-Adjusted Simulatability: Can
+                              Models Generate Non-Trivial Explanations of Their
+                              Behavior in Natural Language? (2020), d)
+                              Evaluating Explainable AI: Which Algorithmic
+                              Explanations Help Users Predict Model Behavior?
+                              (2020)...as well as feflection on these papers and
+                              notes from &ldquo;Opinions on Interpretable
+                              Machine Learning and 70 Summaries of Recent
+                              Papers&rdquo; (2021)...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=85d5d73d0c&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Rotational AI Science &amp; Engineering (RAISE)
+                                Employment Opportunity</a
+                              ><br />
+                              RAISE is an 18-month rotational program offering
+                              participants full-time employment with the Meta AI
+                              team. It is designed to bring a diverse cohort of
+                              software engineers with little to no AI/ML
+                              experience together from a wide range of industry
+                              experiences and backgrounds -- ranging from
+                              individual contributors a few years out of school
+                              to experienced engineers. After completing the
+                              18-month program, the goal is for RAISE alumni to
+                              seamlessly continue their employment at Meta by
+                              selecting a permanent Meta AI team to join that
+                              aligns with their skills and interests. Throughout
+                              the program, all RAISErs are full-time employees,
+                              providing each individual with all the benefits of
+                              being a software engineer at Meta...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=39b366347c&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Implicit Kinematic Policies: Unifying Joint and
+                                Cartesian Action Spaces in End-to-End Robot
+                                Learning</a
+                              ><br />
+                              Action representation is an important yet often
+                              overlooked aspect in end-to-end robot learning
+                              with deep networks. Choosing one action space over
+                              another (e.g. target joint positions, or Cartesian
+                              end-effector poses) can result in surprisingly
+                              stark performance differences between various
+                              downstream tasks -- and as a result, considerable
+                              research has been devoted to finding the right
+                              action space for a given application...in this
+                              work, we instead investigate how our models can
+                              discover and learn for themselves which action
+                              space to use. Leveraging recent work on implicit
+                              behavioral cloning, which takes both observations
+                              and actions as input, we demonstrate that it is
+                              possible to present the same action in multiple
+                              different spaces to the same policy -- allowing it
+                              to learn inductive patterns from each
+                              space.....</font
+                            >
+                          </li>
+                        </ul>
+                        &nbsp;
+
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Summit*</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <h4
+                          style="
+                            line-height: 16px;
+                            text-align: center;
+                            display: block;
+                            font-family: Helvetica;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            color: #000000 !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            ><a
+                              href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=7261713c89&e=7dcf46431f"
+                              style="
+                                color: #ff0000;
+                                font-weight: normal;
+                                text-decoration: none;
+                              "
+                              ><img
+                                data-file-id="1222084"
+                                height="250"
+                                src="https://mcusercontent.com/71a2b2a38789d4d25b738462f/images/c0676d25-4c10-050c-2bc7-aabab9132d6e.png"
+                                style="
+                                  border: 0px;
+                                  width: 250px;
+                                  height: 250px;
+                                  margin: 0px;
+                                  line-height: 100%;
+                                  outline: none;
+                                  text-decoration: none;
+                                  display: inline;
+                                  max-width: 600px !important;
+                                "
+                                width="250" /></a
+                          ></font>
+                        </h4>
+                        <br />
+                        <br />
+                        <font face="tahoma, verdana, segoe, sans-serif"
+                          ><a
+                            href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=8d2a33a687&e=7dcf46431f"
+                            style="
+                              color: #ff0000;
+                              font-weight: normal;
+                              text-decoration: none;
+                            "
+                            >You&#39;re invited to the first-ever Metrics Store
+                            Summit</a
+                          ><br />
+                          <br />
+                          <a
+                            href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=1a47b1b8a2&e=7dcf46431f"
+                            style="
+                              color: #ff0000;
+                              font-weight: normal;
+                              text-decoration: none;
+                            "
+                            >Transform</a
+                          >
+                          is hosting the first-ever industry summit on the
+                          metrics layer. The first-ever
+                          <a
+                            href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=706ccfd675&e=7dcf46431f"
+                            style="
+                              color: #ff0000;
+                              font-weight: normal;
+                              text-decoration: none;
+                            "
+                            >Metrics Store Summit</a
+                          >
+                          on April 26, 2022 will bring discussions around the
+                          semantic layer into one event&mdash;providing context
+                          with use cases for metrics stores, highlighting
+                          applications for metrics, and sharing ideas from
+                          leaders across the modern data stack.You can expect to
+                          hear from Airbnb, Slack, Spotify, Atlan, Hex, Mode,
+                          Hightouch, AtScale and many more in this action-packed
+                          1-day event. We would love to see you there!
+                          <a
+                            href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=4a8131ba9f&e=7dcf46431f"
+                            style="
+                              color: #ff0000;
+                              font-weight: normal;
+                              text-decoration: none;
+                            "
+                            >Register today for free.</a
+                          ><br />
+                          <br />
+                          <br />
+                          <br />
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            ><em
+                              ><span style="font-size: 14px"
+                                >*Sponsored post. If you want to be featured
+                                here, or as our main sponsor, contact us!</span
+                              ></em
+                            >
+                          </font></font
+                        ><br />
+                        &nbsp;
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Jobs</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <ul>
+                          <li>
+                            <a
+                              href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=a8be6f30d2&e=7dcf46431f"
+                              style="
+                                color: #ff0000;
+                                font-weight: normal;
+                                text-decoration: none;
+                              "
+                              target="_blank"
+                              >Lead Data Engineer - electricityMap -
+                              Copenhagen</a
+                            ><br />
+                            <br />
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              >The electricityMap team is hiring a data engineer
+                              to help us build and maintain a scalable data
+                              pipeline and database that forms the foundation of
+                              our mission to accelerate the energy system to a
+                              zero-carbon future.<br />
+                              <br />
+                              Our mission is to organise the world&rsquo;s
+                              electricity data to drive tangible reductions in
+                              carbon emissions. electricityMap started as a
+                              popular open-source project 5 years ago and is now
+                              used every day by citizens, companies,
+                              universities, NGOs, and policy makers around the
+                              world to understand and reduce the climate impact
+                              of electricity.<br />
+                              <br />
+                              You will be joining a fun, international and
+                              inclusive team in our mission to tackle climate
+                              change &ndash; while simultaneously building your
+                              professional experience in the rapidly growing
+                              industry of climate tech...</font
+                            >
+                          </li>
+                        </ul>
+                        <br />
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <em
+                          ><span style="font-size: 14px"
+                            >Want to post a job here? Email us for details
+                            --&gt; team@datascienceweekly.org</span
+                          ></em
+                        ><br />
+                        <br />
+                        &nbsp;
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Training &amp; Resources</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=39ae6a1ba9&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Hands-On Reinforcement Learning Course (Part 1
+                                of 6)</a
+                              ><br />
+                              Let&rsquo;s walk this beautiful path from the
+                              fundamentals to cutting edge reinforcement
+                              learning (RL), step-by-step, with coding examples
+                              and tutorials in Python, together!...This first
+                              part covers the bare minimum concept and theory
+                              you need to embark on this journey. Then, in each
+                              following chapter, we will solve a different
+                              problem, with increasing difficulty...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=1f56075779&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Introduction to variational autoencoders</a
+                              ><br />
+                              ay we want to fit a model to some data. In
+                              mathematical terms, we want to find a distribution
+                              pp that maximizes the probability of observed data
+                              x \in Xx&isin;X. In this case, we will make the
+                              assumption that there is some latent (unobserved)
+                              variable zz that affects the production of xx
+                              behind the scenes...This document explains methods
+                              and challenges for training latent variable
+                              models. Our end goal is to derive the variational
+                              autoencoder (VAE) framework with justifications
+                              for each step along the way...</font
+                            >
+                          </li>
+                        </ul>
+
+                        <ul>
+                          <li>
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=a11a0ac3e4&e=7dcf46431f"
+                                target="_blank"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                >Google AI for JavaScript developers with
+                                TensorFlow.js</a
+                              ><br />
+                              Get productive with TensorFlow.js - Google&#39;s
+                              Machine Learning library for JavaScript. From
+                              pre-made off the shelf models to writing or
+                              training your own, learn how to create next gen
+                              web apps...</font
+                            >
+                          </li>
+                        </ul>
+                        &nbsp;
+
+                        <hr />
+                        &nbsp;
+                        <h2
+                          style="
+                            line-height: 20px;
+                            display: block;
+                            font-family: Tahoma;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            text-align: center;
+                            color: #34495e !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            >Books</font
+                          >
+                        </h2>
+                        &nbsp;
+
+                        <h4
+                          style="
+                            line-height: 16px;
+                            text-align: center;
+                            display: block;
+                            font-family: Helvetica;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: bold;
+                            letter-spacing: normal;
+                            margin-top: 0;
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                            margin-left: 0;
+                            color: #000000 !important;
+                          "
+                        >
+                          <font face="tahoma, verdana, segoe, sans-serif"
+                            ><strong
+                              style="
+                                color: rgb(52, 73, 94);
+                                font-family: tahoma, verdana, segoe, sans-serif;
+                                font-size: 20px;
+                                font-weight: bold;
+                                line-height: 20px;
+                              "
+                              ><a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=aa089031fc&e=7dcf46431f"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                ><img
+                                  data-file-id="1221886"
+                                  height="200"
+                                  src="https://mcusercontent.com/71a2b2a38789d4d25b738462f/images/d05bd784-8856-4672-b937-6c863bceb83d.png"
+                                  style="
+                                    border: 0px;
+                                    width: 200px;
+                                    height: 200px;
+                                    margin: 0px;
+                                    line-height: 100%;
+                                    outline: none;
+                                    text-decoration: none;
+                                    display: inline;
+                                    max-width: 600px !important;
+                                  "
+                                  width="200" /></a></strong
+                          ></font>
+                        </h4>
+                        &nbsp;
+
+                        <ul>
+                          <li>
+                            <h4
+                              style="
+                                line-height: 16px;
+                                display: block;
+                                font-size: 16px;
+                                font-style: normal;
+                                letter-spacing: normal;
+                                margin: 0px 0px 10px;
+                                text-align: left;
+                                font-family: Helvetica;
+                                font-weight: bold;
+                                margin-top: 0;
+                                margin-right: 0;
+                                margin-bottom: 10px;
+                                margin-left: 0;
+                                color: #000000 !important;
+                              "
+                            >
+                              <a
+                                href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=e99646aed5&e=7dcf46431f"
+                                style="
+                                  color: #ff0000;
+                                  font-weight: normal;
+                                  text-decoration: none;
+                                "
+                                target="_blank"
+                                ><font
+                                  color="#ff0000"
+                                  face="tahoma, verdana, segoe, sans-serif"
+                                  ><span style="font-weight: normal"
+                                    >Hands-On Machine Learning with scikit-learn
+                                    and Scientific Python Toolkits</span
+                                  ></font
+                                ></a
+                              >
+                            </h4>
+                            <br />
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><font face="tahoma, verdana, segoe, sans-serif"
+                                >Integrate scikit-learn with various tools such
+                                as NumPy, pandas, imbalanced-learn, and
+                                scikit-surprise and use it to solve real-world
+                                machine learning problems...</font
+                              ><br />
+                              <br />
+                              <font face="tahoma, verdana, segoe, sans-serif"
+                                >For a detailed list of books covering Data
+                                Science, Machine Learning, AI and associated
+                                programming languages check out
+                                <a
+                                  href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=68abbb173f&e=7dcf46431f"
+                                  target="_self"
+                                  style="
+                                    color: #ff0000;
+                                    font-weight: normal;
+                                    text-decoration: none;
+                                  "
+                                  >our resources page</a
+                                >.</font
+                              ><br />
+                              &nbsp;
+                            </font>
+
+                            <hr />
+                            <br />
+                            <font face="tahoma, verdana, segoe, sans-serif"
+                              ><strong>P.S.</strong>, Enjoy the newsletter?
+                              Please forward it to your friends and colleagues -
+                              we&#39;d love to have them onboard :) All the
+                              best, Hannah &amp; Sebastian</font
+                            >
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- END BODY -->
+                </td>
+              </tr>
+              <tr>
+                <td
+                  align="center"
+                  valign="top"
+                  style="
+                    mso-table-lspace: 0pt;
+                    mso-table-rspace: 0pt;
+                    border-collapse: collapse !important;
+                  "
+                >
+                  <!-- BEGIN FOOTER -->
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    id="templateFooter"
+                    style="
+                      mso-table-lspace: 0pt;
+                      mso-table-rspace: 0pt;
+                      border-top: 2px solid #000000;
+                      border-bottom: 20px solid #000000;
+                      border-collapse: collapse !important;
+                    "
+                  >
+                    <tr>
+                      <td
+                        valign="top"
+                        class="footerContent"
+                        style="
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 10px;
+                          line-height: 150%;
+                          padding-top: 20px;
+                          padding-bottom: 20px;
+                          text-align: center;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <a
+                          href="https://datascienceweekly.us3.list-manage.com/track/click?u=71a2b2a38789d4d25b738462f&id=5629dab7b0&e=7dcf46431f"
+                          target="_self"
+                          style="
+                            color: #000000;
+                            font-weight: bold;
+                            text-decoration: none;
+                          "
+                          >Follow on Twitter</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        valign="top"
+                        class="footerContent"
+                        style="
+                          padding-top: 20px;
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 10px;
+                          line-height: 150%;
+                          padding-bottom: 20px;
+                          text-align: center;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <em
+                          >Copyright &copy; 2013-2021 DataScienceWeekly.org, All
+                          rights reserved.</em
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        valign="top"
+                        class="footerContent"
+                        style="
+                          padding-top: 20px;
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 10px;
+                          line-height: 150%;
+                          padding-bottom: 20px;
+                          text-align: center;
+                          border-collapse: collapse !important;
+                        "
+                      >
+                        <a
+                          href="https://datascienceweekly.us3.list-manage.com/unsubscribe?u=71a2b2a38789d4d25b738462f&id=b63d6b814f&e=7dcf46431f&c=fda863f27c"
+                          style="
+                            color: #000000;
+                            font-weight: bold;
+                            text-decoration: none;
+                          "
+                          >unsubscribe from this list</a
+                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                          href="https://datascienceweekly.us3.list-manage.com/profile?u=71a2b2a38789d4d25b738462f&id=b63d6b814f&e=7dcf46431f&c=fda863f27c"
+                          style="
+                            color: #000000;
+                            font-weight: bold;
+                            text-decoration: none;
+                          "
+                          >update subscription preferences</a
+                        >&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        valign="top"
+                        class="footerContent"
+                        style="
+                          padding-top: 20px;
+                          mso-table-lspace: 0pt;
+                          mso-table-rspace: 0pt;
+                          color: #000000;
+                          font-family: Helvetica;
+                          font-size: 10px;
+                          line-height: 150%;
+                          padding-bottom: 20px;
+                          text-align: center;
+                          border-collapse: collapse !important;
+                        "
+                      ></td>
+                    </tr>
+                  </table>
+                  <!-- END FOOTER -->
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+    <img
+      src="https://datascienceweekly.us3.list-manage.com/track/open.php?u=71a2b2a38789d4d25b738462f&id=fda863f27c&e=7dcf46431f"
+      height="1"
+      width="1"
+      alt=""
+    />
+  </body>
+</html>
