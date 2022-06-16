@@ -66,10 +66,14 @@ with st.sidebar:
             key = "selected_newsletters")
 
 # Recommendation
+top_col1, top_col2 = st.columns(2)
 with st.container():
-    st.header("Recommendation")
-
-    st.markdown(replace_html_template("recommended title", "recommended body"), unsafe_allow_html=True)
+    with top_col1:
+        st.header("Recommendation")
+        st.markdown(replace_html_template("recommended title", "recommended body"), unsafe_allow_html=True)
+    with top_col2:
+        st.header("Similar Story")
+        st.markdown(replace_html_template("similar title", "similar body"), unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
