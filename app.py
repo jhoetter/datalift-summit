@@ -70,10 +70,14 @@ top_col1, top_col2 = st.columns(2)
 with st.container():
     with top_col1:
         st.header("Recommendation")
+        st.write("Matching Score: 55.4")
         st.markdown(replace_html_template("recommended title", "recommended body"), unsafe_allow_html=True)
+        st.button("Next recommendation")
     with top_col2:
         st.header("Similar Story")
+        st.write("Similarity Score: 21.3")
         st.markdown(replace_html_template("similar title", "similar body"), unsafe_allow_html=True)
+        st.button("Next similar")
 
 col1, col2 = st.columns(2)
 
