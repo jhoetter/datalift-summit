@@ -5,8 +5,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 def get_dataframe(path = "../labeled_and_processed_stories.csv"):
     return pd.read_csv(path)
 
-def get_vectorized_matrix(df, target_attribute="full_text"):
-    vectorizer = CountVectorizer().fit(df[target_attribute])
+def fit_and_return_vectorizer(df, target_attribute="full_text"):
+    return CountVectorizer().fit(df[target_attribute])
+
+def get_vectorized_matrix(df, vectorizer, target_attribute="full_text"):
     vectorized_matrix = vectorizer.transform(df[target_attribute])
     return vectorized_matrix
 
@@ -30,15 +32,14 @@ def get_top10_recommended_from_vector(df, vec1, vectorized_matrix, headline_attr
     scores = pd.Series(similarity_matrix[0]).sort_values(ascending = False)
     top_10_indices = list(scores.iloc[1:11].index)
     for i in top_10_indices:
+        # TODO return an object with all attributes plus similarity score
         recommended_articles.append(list(df[headline_attribute])[i])
     return recommended_articles
 
-def get_average_vector(df, interesting = True, label_attribute = "interesting"):
-    if(interesting):
-        temp_df = df[df[label_attribute] == "yes"]
-    else:
-        temp_df = df[df[label_attribute] == "no"] # was hab ich mir hier gedacht
+def get_average_interesting_vector(df, vectorizer, label_attribute = "interesting"):
+    temp_df = df[df[label_attribute] == "yes"]
+    temp_vectorized = get_vectorized_matrix(temp_df, vectorizer)
+    return temp_vectorized.mean(axis=0)
 
-    temp_vetorized = get_vectorized_matrix(temp_df)
 
     
