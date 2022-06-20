@@ -2,6 +2,9 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from card_html import CARD_HTML
+import requests
+
+LOCALHOST = "http://127.0.0.1:8000"
 
 def local_css(file_name):
     with open(file_name, "r") as f:
@@ -32,7 +35,7 @@ def replace_html_template(title, body):
 def get_session_state_value(key : str):
     # Initialization
     if key not in st.session_state:
-        return False
+        return None
     else:
         return st.session_state[key]
 
@@ -42,7 +45,19 @@ def show_full_html_of_story(newsletter, date, lookup_df):
     if(not df_with_full_html.empty):
         st.session_state["fully_displayed_html"] = df_with_full_html["content"].item()
 
+def increase_recommendation_index():
+    st.session_state["recommendations_index"] = st.session_state["recommendations_index"] + 1
 
+# ++++++++++++++++++++++++++++
+# ++++++++ API REQUESTS ++++++
+# ++++++++++++++++++++++++++++
+
+def fetch_recommended_articles():
+    print("FETCHED RECOMMENDATIONS")
+    r = requests.get(LOCALHOST + "/recommend")
+    content = r.json()
+    st.session_state["recommendations"] = content
+    st.session_state["recommendations_index"] = 0
 
 
 df = read_dataframe("datascienceweekly_stories.csv")
@@ -51,6 +66,7 @@ full_html_lookup_df = read_dataframe("datascienceweekly_lookup.csv")
 with st.sidebar:
     # Filtering options
     with st.container():
+        st.button("Fetch recent recommendations", key="recommendation_button", on_click=fetch_recommended_articles)
         st.header("Settings")
 
         topic_options = st.multiselect(
@@ -65,14 +81,31 @@ with st.sidebar:
             [],
             key = "selected_newsletters")
 
+        st.write(st.session_state)
+
 # Recommendation
 top_col1, top_col2 = st.columns(2)
 with st.container():
     with top_col1:
-        st.header("Recommendation")
-        st.write("Matching Score: 55.4")
-        st.markdown(replace_html_template("recommended title", "recommended body"), unsafe_allow_html=True)
-        st.button("Next recommendation")
+        st.header("Recommendations")
+        recs = get_session_state_value("recommendations")
+        rec_index = get_session_state_value("recommendations_index")
+        
+        if(recs is not None and rec_index is not None):
+            rec_title = recs[rec_index]["headline"]
+            rec_body = recs[rec_index]["body"]
+            rec_matching_score = np.round(recs[rec_index]["matching_score"], decimals = 2)
+            
+            st.write(f"Matching Score: {rec_matching_score}")
+            st.markdown(replace_html_template(rec_title, rec_body), unsafe_allow_html=True)
+            if(rec_index<9):
+                st.button("Next recommendation",help="Cycle through the top 10 recommendations based on your preferences",key="next_recommendation_button", on_click=increase_recommendation_index)
+            else:
+                st.button("Next recommendation", disabled=True)
+        else:
+            st.write(recs)
+            st.write(rec_index)
+
     with top_col2:
         st.header("Similar Story")
         st.write("Similarity Score: 21.3")

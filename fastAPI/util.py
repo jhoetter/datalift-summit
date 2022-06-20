@@ -26,14 +26,19 @@ def get_top10_recommended_from_headline(df, headline, cosine_similarity_matrix, 
         
     return recommended_articles
 
-def get_top10_recommended_from_vector(df, vec1, vectorized_matrix, headline_attribute = "headline"):
+def get_top10_recommended_from_vector(df, vec1, vectorized_matrix):
     recommended_articles = []
     similarity_matrix = cosine_similarity(vec1, vectorized_matrix)
     scores = pd.Series(similarity_matrix[0]).sort_values(ascending = False)
     top_10_indices = list(scores.iloc[1:11].index)
     for i in top_10_indices:
         # TODO return an object with all attributes plus similarity score
-        recommended_articles.append(list(df[headline_attribute])[i])
+        recommended_articles.append({
+            "headline": list(df["headline"])[i],
+            "body" : list(df["body"])[i],
+            "date" : list(df["date"])[i],
+            "matching_score" : scores[i]
+        })
     return recommended_articles
 
 def get_average_interesting_vector(df, vectorizer, label_attribute = "interesting"):
