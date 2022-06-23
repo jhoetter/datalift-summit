@@ -33,7 +33,7 @@ def read_dataframe(path, sep=",") -> pd.DataFrame:
 def get_filtered_dataframe(df, topics, newsletters) -> pd.DataFrame:
     # TODO add topic selection when it is added to the data
     # add checks if topics and newsletters are not False
-    return df.loc[(df["newsletter"].isin(newsletters))]
+    return df.loc[(df["newsletter"].isin(newsletters)) & (df["topic"].isin(topics))]
 
 @st.cache()
 def replace_html_template(title, body):
@@ -71,7 +71,7 @@ def reset_similarity_index():
 # ++++++++++++++++++++++++++++
 
 def fetch_recommended_articles():
-    print("FETCHED RECOMMENDATIONS")
+    print("FETCHING RECOMMENDATIONS")
     r = requests.get(LOCALHOST + "/recommend")
     if(r.status_code == 200):
         content = json.loads(r.json())
@@ -82,7 +82,7 @@ def fetch_recommended_articles():
         st.session_state["recommendations_index"] = 0
 
 def fetch_similar_stories(headline:str = ""):
-    print("FETCH SIMILAR")
+    print("FETCHING SIMILAR")
     r = requests.get(LOCALHOST + "/similar", params={"headline" : headline})
     if(r.status_code == 200):
         content = json.loads(r.json())
@@ -92,20 +92,38 @@ def fetch_similar_stories(headline:str = ""):
         st.session_state["similar_stories"] = [{"headline" : "ERROR OCCURRED", "body" : "please refetch similar stories", "date":"2000-01-01 00:00:00+00:00"}]
         st.session_state["similarity_index"] = 0
 
+@st.cache()
+def fetch_data():
+    print("FETCHING RECORDS")
+    r = requests.get(LOCALHOST + "/data")
+    if(r.status_code == 200):
+        content = json.loads(r.json())
+        st.session_state["data"] = content
+    else:
+        raise SystemError("Error occurred when trying to fetch record data from the backend")
 
+# Fetch the data from the backend 
+fetch_data()
 
-df = read_dataframe("all_newsletter_stories.csv")
+# Transform the data into an easy-to-use DataFrame
+data = get_session_state_value("data")
+if(data is not None):
+    df = pd.DataFrame(st.session_state["data"])
+else:
+    print("[WARNING] Fallback option - reading data from disk")
+    df = read_dataframe("../04_ModelPipeline/output.csv")
+
+# Load the full html lookup dataframe - could also be in the backend if you want to
 full_html_lookup_df = read_dataframe("html_lookup.csv")
 
+# The sidebar consists of the filtering options and the "fetch recommendation" button 
 with st.sidebar:
-    # Filtering options
     with st.container():
-        st.button("Fetch recent recommendations", key="recommendation_button", on_click=fetch_recommended_articles)
         st.header("Settings")
 
         topic_options = st.multiselect(
             'Topic selection',
-            ['Stock market', 'AI', 'Ethics'],
+            df["topic"].unique().tolist(),
             [],
             key = "selected_topics")
 
@@ -115,7 +133,11 @@ with st.sidebar:
             [],
             key = "selected_newsletters")
 
-        st.write(st.session_state)
+        st.button("Fetch recommendations", key="recommendation_button", on_click=fetch_recommended_articles)
+
+        check = st.checkbox("show session state")
+        if(check):
+            st.write(st.session_state)
 
 # Recommendation and Similar Search
 top_col1, top_col2 = st.columns(2)
@@ -160,13 +182,11 @@ with st.container():
                 st.button("Reset", on_click=reset_similarity_index)
         else:
             st.write("No similarity search started yet")
-        #st.write("Similarity Score: 21.3")
-        #st.markdown(replace_html_template("similar title", "similar body"), unsafe_allow_html=True)
         
 
 col1, col2 = st.columns(2)
 
-# Left-hand side consists of the filtering options, recommendation and newsletter browser
+# Left-hand side consists of the newsletter browser
 with col1:
     # Newsletter Story Browser
     with st.container():
@@ -188,7 +208,7 @@ with col1:
             st.write("Please select a topic or newsletter")
 
 
-# Right-hand side consists of the pick of the day and the full HTML view of the selected newsletter
+# Right-hand side consists of the full HTML view of the selected newsletter
 with col2:
     with st.container():
         st.header("Full Newsletter HTML")

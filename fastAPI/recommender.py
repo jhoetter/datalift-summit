@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import json
 
-def get_embeddings(path = "G:\\GitHub\onetask\\datalift-summit\\04_ModelPipeline\\labeled_data_v1.json", model_indentifier = "distilbert-base-cased"):
+def get_embeddings(path = "../04_ModelPipeline/output.csv", model_indentifier = "distilbert-base-cased"):
     # load the data
     df = get_dataframe(path = path)
     
@@ -45,5 +45,5 @@ def get_top_10_similar_stories(df, headline, embeddings):
     # careful this also includes the idx of the original story
     dists = cdist(embeddings[idx].reshape(1,-1), embeddings, metric="cosine")[0]
     top_10_similar_idx = dists.argsort()[1:11]
-    
+
     return df.loc[top_10_similar_idx]
