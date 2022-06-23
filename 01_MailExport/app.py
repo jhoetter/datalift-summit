@@ -33,7 +33,6 @@ if __name__ == "__main__":
                     message_dict[key] = value
             message_dict["Snippet"] = message["snippet"]
             mail_data.append(message_dict)
-            break
 
     except HttpError as error:
         print(f"An error occurred: {error}")
