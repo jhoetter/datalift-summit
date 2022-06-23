@@ -25,16 +25,16 @@ In this repository you will find all the necessary files to follow along. This r
 2. (if you don't have anaconda installed) [install anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 3. (recommended) create a new conda environment
     ```
-    conda create --name datalift python=3.8
-    conda activate datalift
+    $ conda create --name datalift python=3.8
+    $ conda activate datalift
     ```
 4. install the requirements
     ```
-    conda install --file datalift_env.txt
+    $ conda install --file datalift_env.txt
     ```
     or with pip
     ```
-    pip install -r requirements.txt
+    $ pip install -r requirements.txt
     ```
 
 ## IDE
