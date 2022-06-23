@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import json
 
-def get_embeddings(path = "../04_ModelPipeline/output.csv", model_indentifier = "distilbert-base-cased"):
+def get_embeddings(path = "../../04_ModelPipeline/finished/output.csv", model_indentifier = "distilbert-base-cased"):
     # load the data
     df = get_dataframe(path = path)
     
