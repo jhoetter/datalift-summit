@@ -1,1 +1,1 @@
-!["alt text](preprocessing.png)
+![](https://user-images.githubusercontent.com/57487741/175406442-97fa54f4-7ba8-4e81-9683-d732359dcdde.PNG)

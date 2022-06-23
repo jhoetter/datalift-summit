@@ -109,7 +109,7 @@ else:
     df = read_dataframe("../../04_ModelPipeline/output.csv")
 
 # Load the full html lookup dataframe - could also be in the backend if you want to
-full_html_lookup_df = read_dataframe("html_lookup.csv")
+full_html_lookup_df = read_dataframe("../../02_DataPreprocessing/finished/html_lookup.csv")
 
 # The sidebar consists of the filtering options and the "fetch recommendation" button 
 with st.sidebar:
