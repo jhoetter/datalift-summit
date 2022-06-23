@@ -1,5 +1,13 @@
-# datalift-summit
-All the necessary files for the datalift summit workshop.
+# Welcome
+Hello workshop people! Thanks for joining us today for the "AI-assisted Newsletter Dashboard" workshop.
+
+In this repository you will find all the necessary files to follow along. This repo is organzied as the following:
+- The folder structure represents our workshop outline, starting with 01_MailExport
+- The directories where we code are organized in three sub-categories
+  - **scratch**: necessary files but only filled with comments if you want to code along the whole journey
+  - **guided**: necessary files with some code filled in for a more relaxed follow along
+  - **finished**: the solution we provide for the next step
+- We provide all the necessary data for the following steps in the **finished** sub-directories
 # Timetable
 | Topic | Time
 |--------|-----
@@ -12,20 +20,31 @@ All the necessary files for the datalift summit workshop.
 |👾 building a minimal backend via FastAPI				|			40 min
 
 # Installation
+## Repository and Environment
 1. clone this repository or download it as a zip
-2. (recommended) create a new
-# Coding environment
+2. (if you don't have anaconda installed) [install anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
+3. (recommended) create a new conda environment
+    ```
+    conda create --name datalift python=3.8
+    conda activate datalift
+    ```
+4. install the requirements
+    ```
+    conda install --file datalift_env.txt
+    ```
+    or with pip
+    ```
+    pip install -r requirements.txt
+    ```
+
 ## IDE
-We strongly suggest using VSCode as your IDE. 
-Necessary Extensions:
+We strongly recommend using [VSCode](https://code.visualstudio.com/download) as your IDE. 
+
+**Necessary** Extensions:
 - Jupyter
 - Python
 
 
-Suggested Extensions:
+*Suggested* Extensions:
 - Rainbow CSV
 - Material Icon Theme
-
-## Python Environment
-The easiest way to follow this workshop is to setup an extra python environment so we don't mess up yours.
-As you need a jupyter notebook anyways we encourage you to [install Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
