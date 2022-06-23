@@ -1,9 +1,16 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from card_html import CARD_HTML
 import requests
+import json
 
+CARD_HTML = """
+<div class="card">
+    <div class="container">
+        <h4><b>$TITLE</b></h4>
+        <p>$TEXT</p>
+    </div>
+</div>"""
 LOCALHOST = "http://127.0.0.1:8000"
 
 def local_css(file_name):
@@ -41,12 +48,23 @@ def get_session_state_value(key : str):
 
 # TODO could be cache optimized, e.g. cache the functions that gets the full html
 def show_full_html_of_story(newsletter, date, lookup_df):
-    df_with_full_html = lookup_df[(lookup_df["newsletter"] == newsletter) & (lookup_df["date"] == date)]
+    print(f"searching for {newsletter} on {date}")
+    print(lookup_df["newsletter"].unique())
+    df_with_full_html = lookup_df[(lookup_df["newsletter"].str.lower() == newsletter.lower()) & (lookup_df["date"] == date)]
     if(not df_with_full_html.empty):
         st.session_state["fully_displayed_html"] = df_with_full_html["content"].item()
 
 def increase_recommendation_index():
     st.session_state["recommendations_index"] = st.session_state["recommendations_index"] + 1
+
+def reset_recommendation_index():
+    st.session_state["recommendations_index"] = 0
+
+def increase_similarity_index():
+    st.session_state["similarity_index"] = st.session_state["similarity_index"] + 1
+
+def reset_similarity_index():
+    st.session_state["similarity_index"] = 0
 
 # ++++++++++++++++++++++++++++
 # ++++++++ API REQUESTS ++++++
@@ -55,13 +73,29 @@ def increase_recommendation_index():
 def fetch_recommended_articles():
     print("FETCHED RECOMMENDATIONS")
     r = requests.get(LOCALHOST + "/recommend")
-    content = r.json()
-    st.session_state["recommendations"] = content
-    st.session_state["recommendations_index"] = 0
+    if(r.status_code == 200):
+        content = json.loads(r.json())
+        st.session_state["recommendations"] = content
+        st.session_state["recommendations_index"] = 0
+    else:
+        st.session_state["recommendations"] = [{"headline" : "ERROR OCCURRED", "body" : "please refetch recommendations", "date":"2000-01-01 00:00:00+00:00"}]
+        st.session_state["recommendations_index"] = 0
+
+def fetch_similar_stories(headline:str = ""):
+    print("FETCH SIMILAR")
+    r = requests.get(LOCALHOST + "/similar", params={"headline" : headline})
+    if(r.status_code == 200):
+        content = json.loads(r.json())
+        st.session_state["similar_stories"] = content
+        st.session_state["similarity_index"] = 0
+    else:
+        st.session_state["similar_stories"] = [{"headline" : "ERROR OCCURRED", "body" : "please refetch similar stories", "date":"2000-01-01 00:00:00+00:00"}]
+        st.session_state["similarity_index"] = 0
 
 
-df = read_dataframe("datascienceweekly_stories.csv")
-full_html_lookup_df = read_dataframe("datascienceweekly_lookup.csv")
+
+df = read_dataframe("all_newsletter_stories.csv")
+full_html_lookup_df = read_dataframe("html_lookup.csv")
 
 with st.sidebar:
     # Filtering options
@@ -83,34 +117,52 @@ with st.sidebar:
 
         st.write(st.session_state)
 
-# Recommendation
+# Recommendation and Similar Search
 top_col1, top_col2 = st.columns(2)
 with st.container():
     with top_col1:
-        st.header("Recommendations")
         recs = get_session_state_value("recommendations")
         rec_index = get_session_state_value("recommendations_index")
+        if(rec_index is not None):
+            st.header(f"Recommendations - {rec_index+1}/10")
+        else:
+            st.header(f"Recommendations")
         
         if(recs is not None and rec_index is not None):
             rec_title = recs[rec_index]["headline"]
             rec_body = recs[rec_index]["body"]
-            rec_matching_score = np.round(recs[rec_index]["matching_score"], decimals = 2)
-            
-            st.write(f"Matching Score: {rec_matching_score}")
+
             st.markdown(replace_html_template(rec_title, rec_body), unsafe_allow_html=True)
             if(rec_index<9):
                 st.button("Next recommendation",help="Cycle through the top 10 recommendations based on your preferences",key="next_recommendation_button", on_click=increase_recommendation_index)
             else:
-                st.button("Next recommendation", disabled=True)
+                st.button("Reset", on_click = reset_recommendation_index)
         else:
-            st.write(recs)
-            st.write(rec_index)
+            st.write("Please fetch the newest recommendations in the sidebar")
 
     with top_col2:
-        st.header("Similar Story")
-        st.write("Similarity Score: 21.3")
-        st.markdown(replace_html_template("similar title", "similar body"), unsafe_allow_html=True)
-        st.button("Next similar")
+        similar_stories = get_session_state_value("similar_stories")
+        similarity_index = get_session_state_value("similarity_index")
+
+        if(similarity_index is not None):
+            st.header(f"Similar Stories - {similarity_index+1}/10")
+        else:
+            st.header("Similar Stories")
+
+        if(similar_stories is not None and similarity_index is not None):
+            sim_title = similar_stories[similarity_index]["headline"]
+            sim_body = similar_stories[similarity_index]["body"]
+
+            st.markdown(replace_html_template(sim_title, sim_body), unsafe_allow_html=True)
+            if(similarity_index<9):
+                st.button("Next similar", on_click=increase_similarity_index)
+            else:
+                st.button("Reset", on_click=reset_similarity_index)
+        else:
+            st.write("No similarity search started yet")
+        #st.write("Similarity Score: 21.3")
+        #st.markdown(replace_html_template("similar title", "similar body"), unsafe_allow_html=True)
+        
 
 col1, col2 = st.columns(2)
 
@@ -123,20 +175,27 @@ with col1:
         selected_topics = get_session_state_value("selected_topics")
         selected_newsletters = get_session_state_value("selected_newsletters")
 
+        # TODO replace only this
         dataframe_to_display = get_filtered_dataframe(df, selected_topics, selected_newsletters)
         print(dataframe_to_display.shape)
-        for i, row in dataframe_to_display.iterrows():
-            
-            st.markdown(replace_html_template(str(row["headline"]), str(row["body"])), unsafe_allow_html=True)
-            st.button("View full newsletter", key=str(i), on_click=show_full_html_of_story, args=(row["newsletter"], row["date"], full_html_lookup_df))
+        if(not dataframe_to_display.empty):
+            for i, row in dataframe_to_display.iterrows():
+                
+                st.markdown(replace_html_template(str(row["headline"]), str(row["body"])), unsafe_allow_html=True)
+                st.button("View full newsletter", key="full_newsletter_button_" + str(i), on_click=show_full_html_of_story, args=(row["newsletter"], row["date"], full_html_lookup_df))
+                st.button("Get similar stories", key="similar_stories_button_" + str(i), on_click=fetch_similar_stories, kwargs={"headline" : str(row["headline"])})
+        else:
+            st.write("Please select a topic or newsletter")
 
 
 # Right-hand side consists of the pick of the day and the full HTML view of the selected newsletter
 with col2:
     with st.container():
+        st.header("Full Newsletter HTML")
         #print(get_session_state_value("fully_displayed_html"))
         if(get_session_state_value("fully_displayed_html")):
             displayed_html = get_session_state_value("fully_displayed_html")
+            st.components.v1.html(displayed_html, width=None, height=8024, scrolling=True)
         else:
-            displayed_html = "Please select a newsletter story to see the full HTML"
-        st.components.v1.html(displayed_html, width=None, height=8024, scrolling=True)
+            st.write("Please select a newsletter story to see the full HTML")
+        
