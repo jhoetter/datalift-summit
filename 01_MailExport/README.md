@@ -2,6 +2,10 @@
 
 In this section, you can learn how to integrate a GMail inbox using oauth2. We've separated this from the rest of the repository also w.r.t. the requirements, as this is something that can differ from participant to participant. If you have any troubles with this task at home, please reach out to us anytime :)
 
+Also, if you want to dive into the theory of oauth2, make sure to look at our slides in the root directory of this repository. For further tutorials (which we made use of in this repo), check out:
+- https://www.youtube.com/watch?v=g6IAGvBZDkE&ab_channel=JasonGoodison
+- https://www.youtube.com/watch?v=vQQEaSnQ_bs&t=1079s&ab_channel=CoreySchafer
+
 # Table of contents
   - [0 Setup GCP account](#0-setup-gcp-account)
   - [1 Setup GCP project](#1-setup-gcp-project)
