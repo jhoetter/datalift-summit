@@ -1,6 +1,19 @@
 # datalift-summit
 All the necessary files for the datalift summit workshop.
+# Timetable
+| Topic | Time
+|--------|-----
+|📧 collecting data with oauth2 in GMail				|			15 min
+|🔧 processing data (e.g. HTML and text parsing)			|			30 min
+|🔖 building training data for topic modelling					|	15 min
+|🧠 applying transfer learning with transformers and recommenders	|	30 min
+|☕ **break** ☕												|10 min
+|👑 building a streamlit UI						|			40 min
+|👾 building a minimal backend via FastAPI				|			40 min
 
+# Installation
+1. clone this repository or download it as a zip
+2. (recommended) create a new
 # Coding environment
 ## IDE
 We strongly suggest using VSCode as your IDE. 
