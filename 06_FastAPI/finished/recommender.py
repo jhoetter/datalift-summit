@@ -1,11 +1,12 @@
 from embedders.classification.contextual import TransformerSentenceEmbedder
 from scipy.spatial.distance import cdist
+import numpy as np
+
 from util import get_dataframe
 
-import pandas as pd
-import numpy as np
-import json
+INTERESTING_LABEL_ATTRIBUTE = "__Interesting__MANUAL"
 
+# Not required as we saved the embeddings to disk, but in case you want to extend this example you might need this
 def get_embeddings(path = "../../04_ModelPipeline/finished/output.csv", model_indentifier = "distilbert-base-cased"):
     # load the data
     df = get_dataframe(path = path)
@@ -21,11 +22,11 @@ def get_embeddings(path = "../../04_ModelPipeline/finished/output.csv", model_in
 
 def get_top_10_recommendations(df, embeddings):
     # average the interesting vector
-    interesting_idxs = df[df["__Interesting__MANUAL"] == "yes"].index
+    interesting_idxs = df[df[INTERESTING_LABEL_ATTRIBUTE] == "yes"].index
     interesting_vector_avg = embeddings[interesting_idxs].mean(axis=0)
 
     # calculate the distances to the unlabeled data
-    non_labeled_idxs = df[df["__Interesting__MANUAL"].isnull()].index
+    non_labeled_idxs = df[df[INTERESTING_LABEL_ATTRIBUTE].isnull()].index
     dist_to_unlabeled = cdist(interesting_vector_avg.reshape(1,-1), embeddings[non_labeled_idxs], metric="cosine")[0]
 
     # sort the indices ascending

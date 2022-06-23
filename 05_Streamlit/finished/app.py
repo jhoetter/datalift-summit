@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 import json
 
+# This HTML will be used to render the stories
 CARD_HTML = """
 <div class="card">
     <div class="container">
@@ -11,19 +12,18 @@ CARD_HTML = """
         <p>$TEXT</p>
     </div>
 </div>"""
+
+# Variable where your fastAPI-service is running
 LOCALHOST = "http://127.0.0.1:8000"
 
+# Streamlit CSS Hack - Executing this will set the css properties for the rest of the app
 def local_css(file_name):
     with open(file_name, "r") as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# Streamlit CSS Hack - Executing this will set the css properties for the rest of the app
 local_css("streamlit.css")
 
-@st.cache()
-def get_random_data():
-    return np.random.randn(50, 3)
-
+# 
 @st.cache()
 def read_dataframe(path, sep=",") -> pd.DataFrame:
     df = pd.read_csv(path, sep=sep).sort_values("date", ascending=False)
@@ -31,29 +31,26 @@ def read_dataframe(path, sep=",") -> pd.DataFrame:
 
 @st.cache()
 def get_filtered_dataframe(df, topics, newsletters) -> pd.DataFrame:
-    # TODO add topic selection when it is added to the data
-    # add checks if topics and newsletters are not False
     return df.loc[(df["newsletter"].isin(newsletters)) & (df["topic"].isin(topics))]
 
 @st.cache()
-def replace_html_template(title, body):
+def get_replaced_html_template(title, body):
     return CARD_HTML.replace("$TITLE", title).replace("$TEXT", body)
 
+# Cautionary measure to prevent un-initialized key access
 def get_session_state_value(key : str):
-    # Initialization
     if key not in st.session_state:
         return None
     else:
         return st.session_state[key]
 
-# TODO could be cache optimized, e.g. cache the functions that gets the full html
+# Updates the currently selected HTML
 def show_full_html_of_story(newsletter, date, lookup_df):
-    print(f"searching for {newsletter} on {date}")
-    print(lookup_df["newsletter"].unique())
     df_with_full_html = lookup_df[(lookup_df["newsletter"].str.lower() == newsletter.lower()) & (lookup_df["date"] == date)]
     if(not df_with_full_html.empty):
         st.session_state["fully_displayed_html"] = df_with_full_html["content"].item()
 
+# I am pretty sure the 4 following functions can be summed up in a single function but I was too lazy that day
 def increase_recommendation_index():
     st.session_state["recommendations_index"] = st.session_state["recommendations_index"] + 1
 
@@ -66,12 +63,11 @@ def increase_similarity_index():
 def reset_similarity_index():
     st.session_state["similarity_index"] = 0
 
-# ++++++++++++++++++++++++++++
-# ++++++++ API REQUESTS ++++++
-# ++++++++++++++++++++++++++++
+# ++++++++++++++++++++++++++++++
+# ++++++++ API REQUESTS ++++++++
+# ++++++++++++++++++++++++++++++
 
 def fetch_recommended_articles():
-    print("FETCHING RECOMMENDATIONS")
     r = requests.get(LOCALHOST + "/recommend")
     if(r.status_code == 200):
         content = json.loads(r.json())
@@ -82,7 +78,6 @@ def fetch_recommended_articles():
         st.session_state["recommendations_index"] = 0
 
 def fetch_similar_stories(headline:str = ""):
-    print("FETCHING SIMILAR")
     r = requests.get(LOCALHOST + "/similar", params={"headline" : headline})
     if(r.status_code == 200):
         content = json.loads(r.json())
@@ -92,9 +87,9 @@ def fetch_similar_stories(headline:str = ""):
         st.session_state["similar_stories"] = [{"headline" : "ERROR OCCURRED", "body" : "please refetch similar stories", "date":"2000-01-01 00:00:00+00:00"}]
         st.session_state["similarity_index"] = 0
 
+# Fetching the data can be cached
 @st.cache()
 def fetch_data():
-    print("FETCHING RECORDS")
     r = requests.get(LOCALHOST + "/data")
     if(r.status_code == 200):
         content = json.loads(r.json())
@@ -111,7 +106,7 @@ if(data is not None):
     df = pd.DataFrame(st.session_state["data"])
 else:
     print("[WARNING] Fallback option - reading data from disk")
-    df = read_dataframe("../04_ModelPipeline/output.csv")
+    df = read_dataframe("../../04_ModelPipeline/output.csv")
 
 # Load the full html lookup dataframe - could also be in the backend if you want to
 full_html_lookup_df = read_dataframe("html_lookup.csv")
@@ -154,7 +149,7 @@ with st.container():
             rec_title = recs[rec_index]["headline"]
             rec_body = recs[rec_index]["body"]
 
-            st.markdown(replace_html_template(rec_title, rec_body), unsafe_allow_html=True)
+            st.markdown(get_replaced_html_template(rec_title, rec_body), unsafe_allow_html=True)
             if(rec_index<9):
                 st.button("Next recommendation",help="Cycle through the top 10 recommendations based on your preferences",key="next_recommendation_button", on_click=increase_recommendation_index)
             else:
@@ -175,7 +170,7 @@ with st.container():
             sim_title = similar_stories[similarity_index]["headline"]
             sim_body = similar_stories[similarity_index]["body"]
 
-            st.markdown(replace_html_template(sim_title, sim_body), unsafe_allow_html=True)
+            st.markdown(get_replaced_html_template(sim_title, sim_body), unsafe_allow_html=True)
             if(similarity_index<9):
                 st.button("Next similar", on_click=increase_similarity_index)
             else:
@@ -201,7 +196,7 @@ with col1:
         if(not dataframe_to_display.empty):
             for i, row in dataframe_to_display.iterrows():
                 
-                st.markdown(replace_html_template(str(row["headline"]), str(row["body"])), unsafe_allow_html=True)
+                st.markdown(get_replaced_html_template(str(row["headline"]), str(row["body"])), unsafe_allow_html=True)
                 st.button("View full newsletter", key="full_newsletter_button_" + str(i), on_click=show_full_html_of_story, args=(row["newsletter"], row["date"], full_html_lookup_df))
                 st.button("Get similar stories", key="similar_stories_button_" + str(i), on_click=fetch_similar_stories, kwargs={"headline" : str(row["headline"])})
         else:
