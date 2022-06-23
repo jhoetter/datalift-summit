@@ -12,7 +12,7 @@
 
 
 ## 1 Setup GCP project
-
+[!New Project](screenshots/new_project.png)
 
 ## 2 Activate GMail API
 
