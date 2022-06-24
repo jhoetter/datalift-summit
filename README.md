@@ -1,3 +1,5 @@
+![](banner.png)
+
 # Welcome
 Hello workshop people! Thanks for joining us today for the "AI-assisted Newsletter Dashboard" workshop.
 
@@ -9,15 +11,15 @@ In this repository you will find all the necessary files to follow along. This r
   - **finished**: the solution we provide for the next step
 - We provide all the necessary data for the following steps in the **finished** sub-directories
 # Timetable
-| Topic | Time
-|--------|-----
-|📧 collecting data with oauth2 in GMail				|			15 min
-|🔧 processing data (e.g. HTML and text parsing)			|			30 min
-|🔖 building training data for topic modelling					|	15 min
-|🧠 applying transfer learning with transformers and recommenders	|	30 min
-|☕ **break** ☕												|10 min
-|👑 building a streamlit UI						|			40 min
-|👾 building a minimal backend via FastAPI				|			40 min
+| Topic                                                           | Time   |
+| --------------------------------------------------------------- | ------ |
+| 📧 collecting data with oauth2 in GMail                          | 15 min |
+| 🔧 processing data (e.g. HTML and text parsing)                  | 30 min |
+| 🔖 building training data for topic modelling                    | 15 min |
+| 🧠 applying transfer learning with transformers and recommenders | 30 min |
+| ☕ **break** ☕                                                   | 10 min |
+| 👑 building a streamlit UI                                       | 40 min |
+| 👾 building a minimal backend via FastAPI                        | 40 min |
 
 # Installation
 ## Repository and Environment
