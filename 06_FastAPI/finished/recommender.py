@@ -1,6 +1,7 @@
 from embedders.classification.contextual import TransformerSentenceEmbedder
 from scipy.spatial.distance import cdist
 import numpy as np
+import pandas as pd
 
 from util import get_dataframe
 
@@ -20,7 +21,7 @@ def get_embeddings(path = "../../04_ModelPipeline/finished/output.csv", model_in
     # return the embeddings
     return embeddings
 
-def get_top_10_recommendations(df, embeddings):
+def get_top_10_recommendations(df, embeddings) -> pd.DataFrame:
     # average the interesting vector
     interesting_idxs = df[df[INTERESTING_LABEL_ATTRIBUTE] == "yes"].index
     interesting_vector_avg = embeddings[interesting_idxs].mean(axis=0)
@@ -40,7 +41,7 @@ def get_top_10_recommendations(df, embeddings):
 
     return top_10_recommendations
 
-def get_top_10_similar_stories(df, headline, embeddings):
+def get_top_10_similar_stories(df, headline, embeddings) -> pd.DataFrame:
     idx = df[df["headline"] == headline].index.item()
 
     # careful this also includes the idx of the original story

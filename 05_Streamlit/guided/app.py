@@ -105,7 +105,7 @@ if(data is not None):
     df = pd.DataFrame(st.session_state["data"])
 else:
     print("[WARNING] Fallback option - reading data from disk")
-    df = read_dataframe("../../04_ModelPipeline/output.csv")
+    df = read_dataframe("../../04_ModelPipeline/finished/output.csv")
 
 # Load the full html lookup dataframe - could also be in the backend if you want to
 full_html_lookup_df = read_dataframe("../../02_DataPreprocessing/finished/html_lookup.csv")
