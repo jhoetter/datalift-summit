@@ -1,5 +1,7 @@
 ![](banner.png)
 
+https://raw.githubusercontent.com/code-kern-ai/datalift-summit/dev/02_DataPreprocessing/scraped_newsletters.csv
+
 # Welcome
 Hello workshop people! Thanks for joining us today for the "AI-assisted Newsletter Dashboard" workshop.
 
