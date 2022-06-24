@@ -48,3 +48,8 @@ We strongly recommend using [VSCode](https://code.visualstudio.com/download) as 
 *Suggested* Extensions:
 - Rainbow CSV
 - Material Icon Theme
+
+# Building on this foundation
+![](https://user-images.githubusercontent.com/57487741/175494769-e4f3a6c0-9d03-41e0-a990-8d70edcb8943.png)
+# Using this repository without taking part in the workshop
+COMING SOON! (like very soon)
