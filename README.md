@@ -30,10 +30,6 @@ In this repository you will find all the necessary files to follow along. This r
     ```
 4. install the requirements
     ```
-    $ conda install --file datalift_env.txt
-    ```
-    or with pip
-    ```
     $ pip install -r requirements.txt
     ```
 
