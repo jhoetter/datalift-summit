@@ -1,8 +1,13 @@
 ![](banner.png)
 
-# Welcome
-Hello workshop people! Thanks for joining us today for the "AI-assisted Newsletter Dashboard" workshop.
+# Workshop repository
+This is the repository for the workshop "AI-assisted Newsletter Dashboard" that was held during the datalift summit. It is self-containing, such that you can reproduce all steps from the workshop :)
 
+To do so, please also look into the file `slides.pdf`. If you have any further questions, please don't hesitate to contact:
+- moritz.feuerpfeil@kern.ai, main contributor to this workshop
+- johannes.hoetter@kern.ai, co-founder of Kern AI
+
+## Repository Structure
 In this repository you will find all the necessary files to follow along. This repo is organzied as the following:
 - The folder structure represents our workshop outline, starting with 01_MailExport
 - The directories where we code are organized in three sub-categories
@@ -10,7 +15,9 @@ In this repository you will find all the necessary files to follow along. This r
   - **guided**: necessary files with some code filled in for a more relaxed follow along
   - **finished**: the solution we provide for the next step
 - We provide all the necessary data for the following steps in the **finished** sub-directories
-# Timetable
+
+
+## Timetable
 | Topic                                                           | Time   |
 | --------------------------------------------------------------- | ------ |
 | 📧 collecting data with oauth2 in GMail                          | 15 min |
@@ -21,8 +28,8 @@ In this repository you will find all the necessary files to follow along. This r
 | 👑 building a streamlit UI                                       | 40 min |
 | 👾 building a minimal backend via FastAPI                        | 40 min |
 
-# Installation
-## Repository and Environment
+## Installation
+### Repository and Environment
 1. clone this repository or download it as a zip
 2. (if you don't have anaconda installed) [install anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
 3. (recommended) create a new conda environment
@@ -35,7 +42,7 @@ In this repository you will find all the necessary files to follow along. This r
     $ pip install -r requirements.txt
     ```
 
-## IDE
+### IDE
 We strongly recommend using [VSCode](https://code.visualstudio.com/download) as your IDE. 
 
 **Necessary** Extensions:
@@ -47,7 +54,7 @@ We strongly recommend using [VSCode](https://code.visualstudio.com/download) as 
 - Rainbow CSV
 - Material Icon Theme
 
-# Building on this foundation
+## Exemplary potential improvements
+The app developed in the 3 hours workshop is not perfect yet. Take the following list as an example for things on how you can improve the app further on your own:
+
 ![](https://user-images.githubusercontent.com/57487741/175494769-e4f3a6c0-9d03-41e0-a990-8d70edcb8943.png)
-# Using this repository without taking part in the workshop
-COMING SOON! (like very soon)
