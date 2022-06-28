@@ -16,18 +16,6 @@ In this repository you will find all the necessary files to follow along. This r
   - **finished**: the solution we provide for the next step
 - We provide all the necessary data for the following steps in the **finished** sub-directories
 
-
-## Timetable
-| Topic                                                           | Time   |
-| --------------------------------------------------------------- | ------ |
-| 📧 collecting data with oauth2 in GMail                          | 15 min |
-| 🔧 processing data (e.g. HTML and text parsing)                  | 30 min |
-| 🔖 building training data for topic modelling                    | 15 min |
-| 🧠 applying transfer learning with transformers and recommenders | 30 min |
-| ☕ **break** ☕                                                   | 10 min |
-| 👑 building a streamlit UI                                       | 40 min |
-| 👾 building a minimal backend via FastAPI                        | 40 min |
-
 ## Installation
 ### Repository and Environment
 1. clone this repository or download it as a zip
@@ -49,12 +37,39 @@ We strongly recommend using [VSCode](https://code.visualstudio.com/download) as 
 - Jupyter
 - Python
 
-
 *Suggested* Extensions:
 - Rainbow CSV
 - Material Icon Theme
+
+## Running this Repo
+To run the fastAPI backend and streamlit frontend, please follow these two steps:
+1. go into 06_FastAPI/finished and type
+    ```
+    $ uvicorn main:app --reload
+    ```
+    or (if the previous does not work)
+    ```
+    $ python -m uvicorn main:app --reload
+    ```
+2. go into 05_Streamlit/finished and type
+    ```
+    $ streamlit run app.py
+    ```
+   
+You're now up and running! Make sure to use streamlit in "wide mode", which you can change in the settings that you can access on the top right of your UI.
 
 ## Exemplary potential improvements
 The app developed in the 3 hours workshop is not perfect yet. Take the following list as an example for things on how you can improve the app further on your own:
 
 ![](https://user-images.githubusercontent.com/57487741/175494769-e4f3a6c0-9d03-41e0-a990-8d70edcb8943.png)
+
+## Timetable of the workshop
+| Topic                                                           | Time   |
+| --------------------------------------------------------------- | ------ |
+| 📧 collecting data with oauth2 in GMail                          | 15 min |
+| 🔧 processing data (e.g. HTML and text parsing)                  | 30 min |
+| 🔖 building training data for topic modelling                    | 15 min |
+| 🧠 applying transfer learning with transformers and recommenders | 30 min |
+| ☕ **break** ☕                                                   | 10 min |
+| 👑 building a streamlit UI                                       | 40 min |
+| 👾 building a minimal backend via FastAPI                        | 40 min |
